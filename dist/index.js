@@ -190,7 +190,7 @@ const artifact = __importStar(__nccwpck_require__(2605));
 function uploadSarifArtifact(filename) {
     return __awaiter(this, void 0, void 0, function* () {
         const artifactClient = artifact.create();
-        const artifactName = 'ZAProxy-sarif-report';
+        const artifactName = 'zap-sarif-report';
         const files = [filename];
         const rootDirectory = '.'; // Also possible to use __dirname
         const options = { continueOnError: false };
