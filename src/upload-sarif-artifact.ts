@@ -1,20 +1,22 @@
-import * as artifact from '@actions/artifact'
+import { DefaultArtifactClient } from '@actions/artifact'
 
 async function uploadSarifArtifact(filename: string): Promise<void> {
-  const artifactClient = artifact.create()
+  const artifactClient = new DefaultArtifactClient()
   const artifactName = 'zap-sarif-report'
   const files = [filename]
 
   const rootDirectory = '.' // Also possible to use __dirname
-  const options = {continueOnError: false}
+  const options = { }
 
-  await artifactClient.uploadArtifact(
+  // Handle the UploadResponse object
+  const {id, size} = await artifactClient.uploadArtifact(
     artifactName,
     files,
     rootDirectory,
     options
   )
-  return
+
+  console.log(`Created artifact with id: ${id} (bytes: ${size}`)
 }
 
 export default uploadSarifArtifact
